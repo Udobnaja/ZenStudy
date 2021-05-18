@@ -18,7 +18,7 @@ class CellMapper {
 
     var multiplier: CGFloat = ImageAspectRatio.rectangle
     var title = item.title ?? ""
-    var subtitle = item.text
+    var subtitle = item.text ?? ""
 
     if (title.isEmpty) {
       title = subtitle
