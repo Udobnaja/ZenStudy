@@ -76,10 +76,8 @@ class FeedController: UICollectionViewController {
 
     let cardContentInset: CGFloat = .inset8
     let textContainerInset: CGFloat = cardContentInset + .inset16 * 2
-
-    var model: CellModel
     if let id = item.id {
-      model = models[id] ?? CellMapper().map(
+      let model = models[id] ?? CellMapper().map(
         item: item,
         cellWidth: cellWidth,
         cellContentWidth: cellWidth - textContainerInset,
