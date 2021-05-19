@@ -15,7 +15,7 @@ class FeedController: UICollectionViewController {
 
   private(set) var feedItems = [FeedItem]()
   private var models = [String: CellModel]()
-  private let theme = Theme.light
+  private let theme = Theme.dark
   lazy var collectionTopSpace = Self.defaultCollectionVerticalInset
   lazy var collectionBottomSpace = Self.defaultCollectionVerticalInset
   private var feedProvider: FeedProviding!
@@ -32,6 +32,8 @@ class FeedController: UICollectionViewController {
   init(feedProvider: FeedProviding) {
     super.init(nibName: nil, bundle: nil)
     self.feedProvider = feedProvider
+    
+    setupTheme()
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -90,6 +92,17 @@ class FeedController: UICollectionViewController {
     return cell
   }
 
+  private func setupTheme() {
+    switch theme {
+      case .light:
+        collectionView.backgroundColor = Styles.Colors.Background.feed
+        refreshControl.tintColor = Styles.Colors.Text.primary
+      case .dark:
+        collectionView.backgroundColor = Styles.Colors.Background.feedInverted
+        refreshControl.tintColor = Styles.Colors.Text.primaryInverted
+      }
+  }
+
   @objc func fetchJSON(insertAfter: Bool = false) {
     feedProvider.loadFeed(from: fetchingLink) {
       result in
@@ -146,9 +159,6 @@ class FeedController: UICollectionViewController {
 
     collectionView.delegate = self
     collectionView.dataSource = self
-
-    let color = theme == .light ? Styles.Colors.Background.feed : Styles.Colors.Background.feedInverted
-    collectionView.backgroundColor = color
 
     return collectionView
   }
@@ -222,6 +232,7 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
   override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     if (kind == UICollectionView.elementKindSectionFooter) {
       let result = collectionView.dequeueFooter(FeedItemFooterCell.self, for: indexPath)
+      result.configure(theme: theme)
 
       footerView = result
 

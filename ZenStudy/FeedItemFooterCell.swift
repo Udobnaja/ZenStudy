@@ -33,6 +33,10 @@ class FeedItemFooterCell: UICollectionReusableView {
     return result
   }
 
+  func configure(theme: Theme) {
+    loaderView.color = theme == Theme.light ? Styles.Colors.Text.primary : Styles.Colors.Text.primaryInverted
+  }
+
   func  showLoader(){
     isHidden = false
     loaderView.startAnimating()
