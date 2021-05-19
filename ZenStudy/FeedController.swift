@@ -47,7 +47,7 @@ class FeedController: UICollectionViewController {
 
     refreshControl.addTarget(self, action: #selector(refreshFeed), for: .valueChanged)
 
-    performSelector(inBackground: #selector(fetchJSON), with: nil)
+    fetchJSON()
   }
 
   override func viewDidLoad() {
@@ -110,17 +110,27 @@ class FeedController: UICollectionViewController {
       }
   }
 
-  @objc func fetchJSON(insertAfter: Bool = false) {
+  func fetchJSON(insertAfter: Bool = false) {
+    fetchJSON(insertAfter: insertAfter, callback: {})
+  }
+
+  func fetchJSON(insertAfter: Bool = false, callback: @escaping () -> Void) {
     feedProvider.loadFeed(from: fetchingLink) {
       result in
-          switch result {
-          case .success(let result):
-            self.fetchingLink = result.more.link
-            self.updateFeed(items: result.items, insertAfter: insertAfter)
-          case .failure(let error):
-            DispatchQueue.main.async {
-              self.showError(message: error.localizedDescription)}
-            }
+      DispatchQueue.main.async {
+        defer {
+          callback()
+        }
+        switch result {
+        case .success(let result):
+          self.fetchingLink = result.more.link
+          self.updateFeed(items: result.items, insertAfter: insertAfter)
+        case .failure(URLError.cancelled):
+          break
+        case .failure(let error):
+          self.showError(message: error.localizedDescription)
+        }
+      }
     }
   }
 
@@ -139,9 +149,7 @@ class FeedController: UICollectionViewController {
 
     feedItems = insertAfter ? feedItems + newItems : newItems + feedItems
 
-    DispatchQueue.main.async {
-      self.collectionView.reloadData()
-    }
+    self.collectionView.reloadData()
   }
 
   private func showError(message: String) {
@@ -171,12 +179,8 @@ class FeedController: UICollectionViewController {
   }
 
   @objc private func refreshFeed(_ sender: Any) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      self.fetchJSON()
-
-      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-        self.refreshControl.endRefreshing()
-      }
+    self.fetchJSON(){
+      self.refreshControl.endRefreshing()
     }
   }
 
@@ -186,14 +190,10 @@ class FeedController: UICollectionViewController {
     }
 
     needLoadMore = true
-    
-    DispatchQueue.global(qos: .userInitiated).async {
-      self.fetchJSON(insertAfter: true)
 
-      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-        self.footerView?.hideLoader()
-        self.needLoadMore = false
-      }
+    self.fetchJSON(insertAfter: true) { [weak self] in
+      self?.footerView?.hideLoader()
+      self?.needLoadMore = false
     }
   }
 }
@@ -261,7 +261,7 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     guard let footerView = footerView else {
       return
     }
-    
+
     footerView.showLoader()
 
     loadMore()
