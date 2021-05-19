@@ -111,15 +111,15 @@ class FeedController: UICollectionViewController {
   }
 
   func fetchJSON(insertAfter: Bool = false) {
-    fetchJSON(insertAfter: insertAfter, callback: {})
+    fetchJSON(insertAfter: insertAfter, completion: {})
   }
 
-  func fetchJSON(insertAfter: Bool = false, callback: @escaping () -> Void) {
+  func fetchJSON(insertAfter: Bool = false, completion: @escaping () -> Void) {
     feedProvider.loadFeed(from: fetchingLink) {
       result in
       DispatchQueue.main.async {
         defer {
-          callback()
+          completion()
         }
         switch result {
         case .success(let result):
