@@ -25,7 +25,7 @@ class FeedProvider: FeedProviding {
   }
 
   func loadFeed(from url: URL, completion: @escaping (Result<Feed, Error>) -> Void) {
-//    task?.cancel()
+    task?.cancel()
     
     task = network.fetch(url: url, completion: completion)
 

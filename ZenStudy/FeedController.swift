@@ -59,8 +59,15 @@ class FeedController: UICollectionViewController {
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-
     feedProvider.cancel()
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+
+    if needLoadMore == true {
+      beginLoadMore()
+    }
   }
 
   override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -250,19 +257,19 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     return size
   }
 
-  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+  private func beginLoadMore() {
     guard let footerView = footerView else {
       return
     }
+    
+    footerView.showLoader()
 
-    let currentOffset = scrollView.contentOffset.y
-    let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-    let deltaOffset = maximumOffset - currentOffset
+    loadMore()
+  }
 
-    if deltaOffset <= footerView.frame.size.height && needLoadMore == false  {
-      footerView.showLoader()
-
-      loadMore()
+  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).first != nil && needLoadMore == false  {
+      beginLoadMore()
     }
   }
 }
