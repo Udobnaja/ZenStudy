@@ -6,7 +6,7 @@
 //
 import UIKit
 
-struct FeedItems: Codable {
+struct Feed: Codable {
   var items: [FeedItem]
   var more: FeedLink
 }
