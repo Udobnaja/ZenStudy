@@ -77,14 +77,17 @@ class FeedController: UICollectionViewController {
     let cardContentInset: CGFloat = .inset8
     let textContainerInset: CGFloat = cardContentInset + .inset16 * 2
 
-    let model = models[item.id!] ?? CellMapper().map(
-      item: item,
-      cellWidth: cellWidth,
-      cellContentWidth: cellWidth - textContainerInset,
-      theme: theme
-    )
+    var model: CellModel
+    if let id = item.id {
+      model = models[id] ?? CellMapper().map(
+        item: item,
+        cellWidth: cellWidth,
+        cellContentWidth: cellWidth - textContainerInset,
+        theme: theme
+      )
 
-    cell.configure(with: model)
+      cell.configure(with: model)
+    }
 
     return cell
   }
@@ -194,7 +197,9 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
       theme: theme
     )
 
-    models[item.id!] = model
+    if let id = item.id {
+      models[id] = model
+    }
     
     let height = FeedItemCardCell.height(with: model, for: item)
 
