@@ -29,6 +29,7 @@ class FeedItemFooterCell: UICollectionReusableView {
 
     result.hidesWhenStopped = true
     result.style = UIActivityIndicatorView.Style.medium
+    result.layer.zPosition = -1;
 
     return result
   }

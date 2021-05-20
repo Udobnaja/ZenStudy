@@ -47,6 +47,8 @@ class FeedController: UICollectionViewController {
 
     refreshControl.addTarget(self, action: #selector(refreshFeed), for: .valueChanged)
 
+    NotificationCenter.default.addObserver(self, selector: #selector(willResignActiveNotif), name: UIApplication.willResignActiveNotification, object: nil)
+
     fetchJSON()
   }
 
@@ -60,6 +62,8 @@ class FeedController: UICollectionViewController {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     feedProvider.cancel()
+    refreshControl.endRefreshing()
+    footerView?.hideLoader()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -195,6 +199,10 @@ class FeedController: UICollectionViewController {
       self?.footerView?.hideLoader()
       self?.needLoadMore = false
     }
+  }
+
+  @objc private func willResignActiveNotif(notification: NSNotification) {
+      refreshControl.endRefreshing()
   }
 }
 
