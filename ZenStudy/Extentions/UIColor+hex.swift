@@ -1,4 +1,5 @@
-// Copyright 2021 Yandex LLC. All rights reserved.
+///
+//  Created by Anna Udobnaja on 30.04.2021.
 
 import UIKit
 
@@ -41,4 +42,3 @@ public extension UIColor {
     return nil
   }
 }
-

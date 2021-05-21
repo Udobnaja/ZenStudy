@@ -1,9 +1,5 @@
-//
-//  Feed.swift
-//  ZenStudy
-//
-//  Created by Anna Udobnaja on 29.04.2021.
-//
+///
+// Created by Anna Udobnaja on 29.04.2021.
 
 import UIKit
 
@@ -20,7 +16,7 @@ class FeedController: UICollectionViewController {
   lazy var collectionBottomSpace = Self.defaultCollectionVerticalInset
   private var feedProvider: FeedProviding!
   private let refreshControl = UIRefreshControl()
-  private var fetchingLink = URL(string: "https://zen.yandex.ru/api/v3/launcher/export")!
+  private var fetchingLink: URL?
   private var footerView: FeedItemFooterCell?
 
   private var needLoadMore = false
@@ -32,7 +28,12 @@ class FeedController: UICollectionViewController {
   init(feedProvider: FeedProviding) {
     super.init(nibName: nil, bundle: nil)
     self.feedProvider = feedProvider
-    
+    if let fetchingLink = URL(
+        string: "https://zen.yandex.ru/api/v3/launcher/export"
+    ) {
+      self.fetchingLink = fetchingLink
+    }
+
     setupTheme()
   }
 
@@ -45,9 +46,18 @@ class FeedController: UICollectionViewController {
 
     collectionView.refreshControl = refreshControl
 
-    refreshControl.addTarget(self, action: #selector(refreshFeed), for: .valueChanged)
+    refreshControl.addTarget(
+      self,
+      action: #selector(refreshFeed),
+      for: .valueChanged
+    )
 
-    NotificationCenter.default.addObserver(self, selector: #selector(willResignActiveNotif), name: UIApplication.willResignActiveNotification, object: nil)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(willResignActiveNotif),
+      name: UIApplication.willResignActiveNotification,
+      object: nil
+    )
 
     fetchJSON()
   }
@@ -67,7 +77,7 @@ class FeedController: UICollectionViewController {
   }
 
   override func viewWillAppear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
+    super.viewWillAppear(animated)
 
     if needLoadMore == true {
       beginLoadMore()
@@ -78,11 +88,17 @@ class FeedController: UICollectionViewController {
     return 1
   }
 
-  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  override func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int
+  ) -> Int {
     return feedItems.count
   }
 
-  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  override func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
     let cell = collectionView.dequeue(FeedItemCardCell.self, for: indexPath)
 
     let item = feedItems[indexPath.item]
@@ -105,13 +121,13 @@ class FeedController: UICollectionViewController {
 
   private func setupTheme() {
     switch theme {
-      case .light:
-        collectionView.backgroundColor = Styles.Colors.Background.feed
-        refreshControl.tintColor = Styles.Colors.Text.primary
-      case .dark:
-        collectionView.backgroundColor = Styles.Colors.Background.feedInverted
-        refreshControl.tintColor = Styles.Colors.Text.primaryInverted
-      }
+    case .light:
+      collectionView.backgroundColor = Styles.Colors.Background.feed
+      refreshControl.tintColor = Styles.Colors.Text.primary
+    case .dark:
+      collectionView.backgroundColor = Styles.Colors.Background.feedInverted
+      refreshControl.tintColor = Styles.Colors.Text.primaryInverted
+    }
   }
 
   func fetchJSON(insertAfter: Bool = false) {
@@ -119,8 +135,11 @@ class FeedController: UICollectionViewController {
   }
 
   func fetchJSON(insertAfter: Bool = false, completion: @escaping () -> Void) {
-    feedProvider.loadFeed(from: fetchingLink) {
-      result in
+    guard let fetchingLink = fetchingLink else {
+      showError(message: "Not a valid URL")
+      return
+    }
+    feedProvider.loadFeed(from: fetchingLink) { result in
       DispatchQueue.main.async {
         defer {
           completion()
@@ -157,7 +176,11 @@ class FeedController: UICollectionViewController {
   }
 
   private func showError(message: String) {
-    let ac = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+    let ac = UIAlertController(
+      title: "Error",
+      message: message,
+      preferredStyle: .alert
+    )
 
     ac.addAction(UIAlertAction(title: "OK", style: .default))
 
@@ -183,7 +206,7 @@ class FeedController: UICollectionViewController {
   }
 
   @objc private func refreshFeed(_ sender: Any) {
-    self.fetchJSON(){
+    self.fetchJSON {
       self.refreshControl.endRefreshing()
     }
   }
@@ -207,7 +230,11 @@ class FeedController: UICollectionViewController {
 }
 
 extension FeedController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
     let item = feedItems[indexPath.item]
 
     let cardContentInset: CGFloat = Styles.feedCellContentInset * 3
@@ -223,7 +250,7 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     if let id = item.id {
       models[id] = model
     }
-    
+
     let height = FeedItemCardCell.height(with: model, for: item)
 
     return CGSize(width: cellWidth, height: height)
@@ -244,9 +271,16 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
       )
   }
 
-  override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    if (kind == UICollectionView.elementKindSectionFooter) {
-      let result = collectionView.dequeueFooter(FeedItemFooterCell.self, for: indexPath)
+  override func collectionView(
+    _ collectionView: UICollectionView,
+    viewForSupplementaryElementOfKind kind: String,
+    at indexPath: IndexPath
+  ) -> UICollectionReusableView {
+    if kind == UICollectionView.elementKindSectionFooter {
+      let result = collectionView.dequeueFooter(
+        FeedItemFooterCell.self,
+        for: indexPath
+      )
       result.configure(theme: theme)
 
       footerView = result
@@ -256,8 +290,12 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
     fatalError()
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-    if (needLoadMore) {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    referenceSizeForFooterInSection section: Int
+  ) -> CGSize {
+    if needLoadMore {
       return CGSize.zero
     }
 
@@ -276,7 +314,9 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
   }
 
   override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    if collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).first != nil && needLoadMore == false  {
+    if collectionView.visibleSupplementaryViews(
+        ofKind: UICollectionView.elementKindSectionFooter
+    ).first != nil && needLoadMore == false {
       beginLoadMore()
     }
   }

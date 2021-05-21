@@ -1,0 +1,163 @@
+# Rules documentation https://realm.github.io/SwiftLint/rule-directory.html
+
+excluded:
+  - Pods
+  # workaround to exclude tests
+  - "*/Tests/*"
+  - "*/*/Tests/*"
+  - "*/*/*/Tests/*"
+  - "*/*/*/*/Tests/*"
+  - "*/*/*/*/*/Tests/*"
+  - "*/*/*/*/*/*/Tests/*"
+
+reporter: "xcode"
+
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  - identifier_name
+  - line_length
+  - for_where
+
+opt_in_rules:
+  - anyobject_protocol
+  - array_init
+  - class_delegate_protocol
+  - closure_end_indentation
+  - closure_parameter_position
+  - closure_spacing
+  - collection_alignment
+  - colon
+  - comma
+  - compiler_protocol_init
+  - contains_over_first_not_nil
+  - control_statement
+  - discarded_notification_center_observer
+  - discouraged_direct_init
+  - discouraged_object_literal
+  - duplicate_enum_cases
+  - duplicate_imports
+  - dynamic_inline
+  - empty_count
+  - empty_enum_arguments
+  - empty_parameters
+  - empty_parentheses_with_trailing_closure
+  - empty_xctest_method
+  - explicit_init
+  - file_header
+  - first_where
+  - force_unwrapping
+  - generic_type_name
+  - identical_operands
+  - implicit_getter
+  - inert_defer
+  - is_disjoint
+  - large_tuple
+  - last_where
+  - leading_whitespace
+  - legacy_cggeometry_functions
+  - legacy_constant
+  - legacy_constructor
+  - legacy_hashing
+  - legacy_random
+  - literal_expression_end_indentation
+  - mark
+  - multiline_arguments
+  - multiline_function_chains
+  - multiline_literal_brackets
+  - multiline_parameters
+  - multiline_parameters_brackets
+  - multiple_closures_with_trailing_closure
+  - nesting
+  - nsobject_prefer_isequal
+  - opening_brace
+  - operator_usage_whitespace
+  - operator_whitespace
+  - overridden_super_call
+  - override_in_extension
+  - private_action
+  - private_outlet
+  - private_over_fileprivate
+  - private_unit_test
+  - prohibited_super_call
+  - protocol_property_accessors_order
+  - reduce_boolean
+  - reduce_into
+  - redundant_discardable_let
+  - redundant_nil_coalescing
+  - redundant_objc_attribute
+  - redundant_optional_initialization
+  - redundant_set_access_control
+  - redundant_type_annotation
+  - redundant_void_return
+  - return_arrow_whitespace
+  - shorthand_operator
+  - sorted_first_last
+  - sorted_imports
+  - static_operator
+  - superfluous_disable_command
+  - switch_case_alignment
+  - syntactic_sugar
+  - trailing_newline
+  - trailing_semicolon
+  - unneeded_break_in_switch
+  - unneeded_parentheses_in_closure_argument
+  - unused_capture_list
+  - unused_control_flow_label
+  - unused_declaration
+  - unused_enumerated
+  - unused_import
+  - unused_optional_binding
+  - unused_setter_value
+  - valid_ibinspectable
+  - vertical_parameter_alignment
+  - vertical_parameter_alignment_on_call
+  - void_return
+  - xct_specific_matcher
+  - xctfail_message
+  - yoda_condition
+  # - deny_uiimage_init_named
+
+file_header:
+  forbidden_pattern: "[a-zA-Z]*"
+
+function_body_length:
+  warning: 60
+
+function_parameter_count:
+  warning: 10
+
+file_length:
+  warning: 620
+
+type_body_length:
+  warning: 400
+  error: 450
+
+large_tuple:
+  warning: 3
+
+cyclomatic_complexity:
+  ignores_case_statements: true
+
+custom_rules:
+  # deny_uiimage_init_named:
+  #   included: ".*.swift"
+  #   regex: '(UIImage(\.init){0,1}\(named\: ((?!,).)*\))'
+  #   name: "UIImage init(named:) denied"
+  #   message: "Use init(namedInZenBundle:)"
+  #   severity: error
+
+  custom_line_length:
+    included: ".*.swift"
+    regex: '^(?!\s{0,}\/\/)((?!\n|NSLayoutConstraint\.|\.constraint\(|\.pin\(|\.move\(to\:|\.addLine\(to\:|\.addCurve\(to\:|\.addArc\(center\:|\.addQuadCurve\(to\:|\.getLineDash\(|\.setLineDash\(|\.stroke\(with\:).){86,}$\n'
+    name: "Line Length"
+    message: "Line should be 85 characters or less."
+    severity: warning
+
+  unneeded_internal_access_level:
+    included: ".*.swift"
+    regex: "internal (class|func|extension|enum|var|let|weak|static)"
+    name: "Unneeded internal access level"
+    message: "No need to specify an explicit internal access level in your code, as it's default"
+    severity: warning

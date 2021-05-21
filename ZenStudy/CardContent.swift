@@ -1,9 +1,5 @@
-//
-//  CardContent.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 04.05.2021.
-//
 
 import UIKit
 
@@ -30,23 +26,44 @@ class CardContent: UIView {
   private func setupLayout() {
     addSubview(stackView)
 
-    stackView.pinEdgesToSuperview(with:  UIEdgeInsets(top: 0, left: Styles.feedCellContentInset, bottom: 0, right: Styles.feedCellContentInset))
+    stackView.pinEdgesToSuperview(
+      with: UIEdgeInsets(
+        top: 0,
+        left: Styles.feedCellContentInset,
+        bottom: 0,
+        right: Styles.feedCellContentInset
+      )
+    )
 
     for view in [thumbView, textStackView] {
       stackView.addArrangedSubview(view)
     }
-    
-    textStackView.isLayoutMarginsRelativeArrangement = true
-    textStackView.layoutMargins = UIEdgeInsets(top: .inset4, left: .inset16, bottom: 0, right: .inset16)
 
-    for view in [SpacerView.height8, titleView, subtitleView, additionalInfoLabel, SpacerView.height16] {
+    textStackView.isLayoutMarginsRelativeArrangement = true
+    textStackView.layoutMargins = UIEdgeInsets(
+      top: .inset4,
+      left: .inset16,
+      bottom: 0,
+      right: .inset16
+    )
+
+    for view in [
+      SpacerView.height8,
+      titleView,
+      subtitleView,
+      additionalInfoLabel,
+      SpacerView.height16
+    ] {
       textStackView.addArrangedSubview(view)
     }
   }
 
   private func configureViewActions() {
-    let contentTap = UITapGestureRecognizer(target: self, action: #selector(handleContentAreaTap))
-    
+    let contentTap = UITapGestureRecognizer(
+      target: self,
+      action: #selector(handleContentAreaTap)
+    )
+
     stackView.addGestureRecognizer(contentTap)
   }
 
@@ -119,23 +136,41 @@ class CardContent: UIView {
 
   private func setupTheme(theme: Theme) {
     switch theme {
-      case .light:
-        stackView.backgroundColor = Styles.Colors.Background.secondary
-        titleView.textColor = Styles.Colors.Text.primary
-        subtitleView.textColor = Styles.Colors.Text.secondary
-        additionalInfoLabel.textColor = Styles.Colors.Text.tetriary
-      case .dark:
-        stackView.backgroundColor = Styles.Colors.Background.secondaryInverted
-        titleView.textColor = Styles.Colors.Text.primaryInverted
-        subtitleView.textColor = Styles.Colors.Text.secondaryInverted
-        additionalInfoLabel.textColor = Styles.Colors.Text.tetriaryInverted
-      }
+    case .light:
+      stackView.backgroundColor = Styles.Colors.Background.secondary
+      titleView.textColor = Styles.Colors.Text.primary
+      subtitleView.textColor = Styles.Colors.Text.secondary
+      additionalInfoLabel.textColor = Styles.Colors.Text.tetriary
+    case .dark:
+      stackView.backgroundColor = Styles.Colors.Background.secondaryInverted
+      titleView.textColor = Styles.Colors.Text.primaryInverted
+      subtitleView.textColor = Styles.Colors.Text.secondaryInverted
+      additionalInfoLabel.textColor = Styles.Colors.Text.tetriaryInverted
+    }
+  }
+
+  private func setupAdditionalInfoLabel(with model: CardContentModel) {
+    if let createDate = model.createDate {
+      additionalInfoLabel.text = createDate
+      additionalInfoLabel.isHidden = false
+      textStackView.setCustomSpacing(.inset2, after: subtitleView)
+      additionalInfoLabel.setDimension(
+        .height,
+        to: CardContent.additionalInfoHeight(
+          createDate: createDate,
+          availableWidth: model.cellContentWidth
+        )
+      )
+    } else {
+      additionalInfoLabel.isHidden = true
+      textStackView.setCustomSpacing(0, after: subtitleView)
+    }
   }
 
   func configure(
     with model: CardContentModel,
     theme: Theme
-  ){
+  ) {
     setupTheme(theme: theme)
 
     let hasSubtitle = !model.text.isEmpty
@@ -144,35 +179,55 @@ class CardContent: UIView {
         if let url = URL(string: imageSrc) {
           thumbView.load(url: url)
           thumbView.isHidden = false
-          titleView.textContainer.maximumNumberOfLines = Layout.titleMaximumNumberOfLines
+          titleView.textContainer.maximumNumberOfLines =
+            Layout.titleMaximumNumberOfLines
           subtitleView.textContainer.maximumNumberOfLines = 3
-          textStackView.layoutMargins = UIEdgeInsets(top: .inset4, left: .inset16, bottom: 0, right: .inset16)
+          textStackView.layoutMargins = UIEdgeInsets(
+            top: .inset4,
+            left: .inset16,
+            bottom: 0,
+            right: .inset16
+          )
         } else {
           titleView.textContainer.maximumNumberOfLines = 3
           subtitleView.textContainer.maximumNumberOfLines = 6
           thumbView.isHidden = true
-          textStackView.layoutMargins = UIEdgeInsets(top: .inset12, left: .inset16, bottom: 0, right: .inset16)
-          //topSpacerView.setDimension(.height, to: .inset16)
+          textStackView.layoutMargins = UIEdgeInsets(
+            top: .inset12,
+            left: .inset16,
+            bottom: 0,
+            right: .inset16
+          )
+          // topSpacerView.setDimension(.height, to: .inset16)
         }
     } else {
       titleView.textContainer.maximumNumberOfLines = 3
       subtitleView.textContainer.maximumNumberOfLines = 6
       thumbView.isHidden = true
-      textStackView.layoutMargins = UIEdgeInsets(top: .inset12, left: .inset16, bottom: 0, right: .inset16)
-      //topSpacerView.setDimension(.height, to: .inset16)
+      textStackView.layoutMargins = UIEdgeInsets(
+        top: .inset12,
+        left: .inset16,
+        bottom: 0,
+        right: .inset16
+      )
+      // topSpacerView.setDimension(.height, to: .inset16)
     }
     let titleAtributes = CardContent.createNSAttributedString(
-      for: model.title!,
+      for: model.title,
       font: CardContent.Fonts.title,
       lineHeight: 1.04
     )
     titleAtributes.addAttribute(
       NSAttributedString.Key.foregroundColor,
-      value: theme == Theme.light ? Styles.Colors.Text.primary : Styles.Colors.Text.primaryInverted, range: NSRange(location: 0, length: model.title!.count))
+      value: theme == Theme.light ?
+        Styles.Colors.Text.primary :
+        Styles.Colors.Text.primaryInverted,
+      range: NSRange(location: 0, length: model.title.count)
+    )
 
     titleView.attributedText = titleAtributes
 
-    if (hasSubtitle) {
+    if hasSubtitle {
       let subtitleAtributes = CardContent.createNSAttributedString(
         for: model.text,
         font: CardContent.Fonts.subtitle,
@@ -180,7 +235,11 @@ class CardContent: UIView {
       )
       subtitleAtributes.addAttribute(
         NSAttributedString.Key.foregroundColor,
-        value: theme == Theme.light ? Styles.Colors.Text.secondary : Styles.Colors.Text.secondaryInverted, range: NSRange(location: 0, length: model.text.count))
+        value: theme == Theme.light ?
+          Styles.Colors.Text.secondary :
+          Styles.Colors.Text.secondaryInverted,
+        range: NSRange(location: 0, length: model.text.count)
+      )
       subtitleView.attributedText = subtitleAtributes
       subtitleView.isHidden = false
 
@@ -190,15 +249,8 @@ class CardContent: UIView {
       textStackView.setCustomSpacing(.inset4, after: titleView)
     }
 
-    if let createDate = model.createDate {
-      additionalInfoLabel.text = createDate
-      additionalInfoLabel.isHidden = false
-      textStackView.setCustomSpacing(.inset2, after: subtitleView)
-      additionalInfoLabel.setDimension(.height, to: CardContent.additionalInfoHeight(createDate: createDate, availableWidth: model.cellContentWidth))
-    } else {
-      additionalInfoLabel.isHidden = true
-      textStackView.setCustomSpacing(0, after: subtitleView)
-    }
+    setupAdditionalInfoLabel(with: model)
+
   }
 }
 
@@ -219,28 +271,41 @@ extension CardContent {
 
   static func thumbHeight(with model: CardContentModel) -> CGFloat {
     let cardContentInset: CGFloat = Styles.feedCellContentInset * 2
-    let thumbWidth: CGFloat = model.cellWidth - cardContentInset - Layout.imageViewBorderWidth * 2
+    let thumbWidth: CGFloat =
+      model.cellWidth - cardContentInset - Layout.imageViewBorderWidth * 2
     let thumbHeight = thumbWidth * model.thumbAspectRatio
 
     return thumbHeight
   }
 
-  static private func createNSAttributedString(for string: String, font: UIFont, lineHeight: CGFloat) -> NSMutableAttributedString {
+  static private func createNSAttributedString(
+    for string: String,
+    font: UIFont,
+    lineHeight: CGFloat
+  ) -> NSMutableAttributedString {
     let style = NSMutableParagraphStyle()
     style.lineHeightMultiple = lineHeight
 
     return NSMutableAttributedString(string: string, attributes: [
       NSAttributedString.Key.font: font,
-      NSAttributedString.Key.paragraphStyle: style,
+      NSAttributedString.Key.paragraphStyle: style
     ])
   }
 
-  static func titleHeight(title: String?, availableWidth: CGFloat, numberOfLines: Int) -> CGFloat {
+  static func titleHeight(
+    title: String?,
+    availableWidth: CGFloat,
+    numberOfLines: Int
+  ) -> CGFloat {
     guard let title = title else {
       return 0
     }
 
-    let titleNS = self.createNSAttributedString(for: title, font: CardContent.Fonts.title, lineHeight: 1.04)
+    let titleNS = self.createNSAttributedString(
+      for: title,
+      font: CardContent.Fonts.title,
+      lineHeight: 1.04
+    )
     let titleLines = titleNS.splitByLines(availableWidth: availableWidth)
 
     let newTitle = NSMutableAttributedString()
@@ -251,7 +316,10 @@ extension CardContent {
     return newTitle.height(for: availableWidth)
   }
 
-  static func additionalInfoHeight(createDate: String?, availableWidth: CGFloat) -> CGFloat {
+  static func additionalInfoHeight(
+    createDate: String?,
+    availableWidth: CGFloat
+  ) -> CGFloat {
     guard let createDate = createDate else {
       return 0
     }
@@ -262,11 +330,19 @@ extension CardContent {
     return createDateNS.height(for: availableWidth)
   }
 
-  static func subtitleHeight(subtitle: String, availableWidth: CGFloat, numberOfLines: Int) -> CGFloat {
+  static func subtitleHeight(
+    subtitle: String,
+    availableWidth: CGFloat,
+    numberOfLines: Int
+  ) -> CGFloat {
     if subtitle.isEmpty {
       return 0
     }
-    let subtitleNS = self.createNSAttributedString(for: subtitle, font: CardContent.Fonts.subtitle, lineHeight: 1.1)
+    let subtitleNS = self.createNSAttributedString(
+      for: subtitle,
+      font: CardContent.Fonts.subtitle,
+      lineHeight: 1.1
+    )
     let subtitleLines = subtitleNS.splitByLines(availableWidth: availableWidth)
     let newSubtitle = NSMutableAttributedString()
 
@@ -279,9 +355,20 @@ extension CardContent {
 
   static func textContainerHeight(with model: CardContentModel) -> CGFloat {
     let hasImage = model.thumbAspectRatio != .zero
-    let titleHeight = CardContent.titleHeight(title: model.title, availableWidth: model.cellContentWidth, numberOfLines: hasImage ? 2 : 3)
-    let subTitleHeight = CardContent.subtitleHeight(subtitle: model.text, availableWidth: model.cellContentWidth, numberOfLines: hasImage ? 3 : 6)
-    let createDateHeight = CardContent.additionalInfoHeight(createDate: model.createDate, availableWidth: model.cellContentWidth)
+    let titleHeight = CardContent.titleHeight(
+      title: model.title,
+      availableWidth: model.cellContentWidth,
+      numberOfLines: hasImage ? 2 : 3
+    )
+    let subTitleHeight = CardContent.subtitleHeight(
+      subtitle: model.text,
+      availableWidth: model.cellContentWidth,
+      numberOfLines: hasImage ? 3 : 6
+    )
+    let createDateHeight = CardContent.additionalInfoHeight(
+      createDate: model.createDate,
+      availableWidth: model.cellContentWidth
+    )
     let spacerEndContent: CGFloat = .inset16
     let spacerAfterImage: CGFloat = hasImage ? .inset8 : .inset16
 
@@ -294,6 +381,13 @@ extension CardContent {
       spacerAfterSubtitle = 0
     }
 
-    return titleHeight + subTitleHeight + createDateHeight + spacerBeforeTitle + spacerAfterTitle + spacerAfterSubtitle + spacerEndContent + spacerAfterImage
+    return titleHeight +
+      subTitleHeight +
+      createDateHeight +
+      spacerBeforeTitle +
+      spacerAfterTitle +
+      spacerAfterSubtitle +
+      spacerEndContent +
+      spacerAfterImage
   }
 }

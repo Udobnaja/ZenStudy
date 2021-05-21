@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43DD6E0E15A12125ECDDBC43 /* libPods-ZenStudy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 373E1ED71E11AD1A73D2634A /* libPods-ZenStudy.a */; };
 		5E7A02EA263AEDC100DF7B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A02E9263AEDC100DF7B53 /* AppDelegate.swift */; };
 		5E7A02EC263AEDC100DF7B53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A02EB263AEDC100DF7B53 /* SceneDelegate.swift */; };
 		5E7A02F3263AEDC300DF7B53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A02F2263AEDC300DF7B53 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		373E1ED71E11AD1A73D2634A /* libPods-ZenStudy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZenStudy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7A02E6263AEDC100DF7B53 /* ZenStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZenStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7A02E9263AEDC100DF7B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E7A02EB263AEDC100DF7B53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,8 @@
 		5E7A06482653B41A00DF7B53 /* FeedProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProviding.swift; sourceTree = "<group>"; };
 		5E7A064B2653B89200DF7B53 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		5E7A06552654191E00DF7B53 /* FeedItemFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemFooterCell.swift; sourceTree = "<group>"; };
+		8F1B696A2608190D6E252383 /* Pods-ZenStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenStudy.debug.xcconfig"; path = "Target Support Files/Pods-ZenStudy/Pods-ZenStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		D97C1F69B922032CE1A603B0 /* Pods-ZenStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenStudy.release.xcconfig"; path = "Target Support Files/Pods-ZenStudy/Pods-ZenStudy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43DD6E0E15A12125ECDDBC43 /* libPods-ZenStudy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +129,8 @@
 			children = (
 				5E7A02E8263AEDC100DF7B53 /* ZenStudy */,
 				5E7A02E7263AEDC100DF7B53 /* Products */,
+				B6EB60331F6E4214F26BA2B5 /* Pods */,
+				9BCFD4AF9775E6A52A4FE800 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,6 +229,23 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		9BCFD4AF9775E6A52A4FE800 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				373E1ED71E11AD1A73D2634A /* libPods-ZenStudy.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B6EB60331F6E4214F26BA2B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8F1B696A2608190D6E252383 /* Pods-ZenStudy.debug.xcconfig */,
+				D97C1F69B922032CE1A603B0 /* Pods-ZenStudy.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -229,9 +253,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5E7A02FA263AEDC300DF7B53 /* Build configuration list for PBXNativeTarget "ZenStudy" */;
 			buildPhases = (
+				4E696786F840E9F1474DC5D8 /* [CP] Check Pods Manifest.lock */,
 				5E7A02E2263AEDC100DF7B53 /* Sources */,
 				5E7A02E3263AEDC100DF7B53 /* Frameworks */,
 				5E7A02E4263AEDC100DF7B53 /* Resources */,
+				5E7A065E2657B74500DF7B53 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -298,6 +324,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E696786F840E9F1474DC5D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZenStudy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E7A065E2657B74500DF7B53 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n  ${PODS_ROOT}/SwiftLint/swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5E7A02E2263AEDC100DF7B53 /* Sources */ = {
@@ -460,6 +528,7 @@
 		};
 		5E7A02FB263AEDC300DF7B53 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F1B696A2608190D6E252383 /* Pods-ZenStudy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -478,6 +547,7 @@
 		};
 		5E7A02FC263AEDC300DF7B53 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D97C1F69B922032CE1A603B0 /* Pods-ZenStudy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

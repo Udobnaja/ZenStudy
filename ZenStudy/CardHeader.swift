@@ -1,9 +1,5 @@
-//
-//  CardHeader.swift
-//  ZenStudy
-//
-//  Created by Anna Udobnaja on 05.05.2021.
-//
+///
+// Created by Anna Udobnaja on 05.05.2021.
 
 import UIKit
 
@@ -15,7 +11,7 @@ class CardHeader: UIView {
   lazy var publisherAvatar = makePublisherAvatar()
   lazy var publisherTitle = makePublisherTitle()
   lazy var subscribedLabel = makeSubscribedLabel()
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
 
@@ -35,7 +31,12 @@ class CardHeader: UIView {
 
     stackView.pinEdgesToSuperview()
     stackView.isLayoutMarginsRelativeArrangement = true
-    stackView.layoutMargins = UIEdgeInsets(top: .inset10, left: .inset16, bottom: .inset10, right: .inset16)
+    stackView.layoutMargins = UIEdgeInsets(
+      top: .inset10,
+      left: .inset16,
+      bottom: .inset10,
+      right: .inset16
+    )
 
     stackView.addArrangedSubview(publisherContainerView)
     stackView.addArrangedSubview(menuButton)
@@ -48,7 +49,10 @@ class CardHeader: UIView {
   }
 
   private func configureViewActions() {
-    let handleChannelTap = UITapGestureRecognizer(target: self, action: #selector(handleChannelButtonTap))
+    let handleChannelTap = UITapGestureRecognizer(
+      target: self,
+      action: #selector(handleChannelButtonTap)
+    )
 
     publisherContainerView.addGestureRecognizer(handleChannelTap)
 
@@ -125,7 +129,9 @@ class CardHeader: UIView {
     imageView.image = UIImage(named: Assets.placeholderAvatar)
     imageView.clipsToBounds = true
 
-    imageView.setDimensions(to: CGSize(width: Layout.avatarSize, height: Layout.avatarSize))
+    imageView.setDimensions(
+      to: CGSize(width: Layout.avatarSize, height: Layout.avatarSize)
+    )
 
     let fadeView = UIView.newAutoLayout()
     fadeView.backgroundColor = Styles.Colors.Other.avatarsFade
@@ -146,21 +152,21 @@ class CardHeader: UIView {
 
   private func setupTheme(theme: Theme) {
     switch theme {
-      case .light:
-        publisherTitle.textColor = Styles.Colors.Text.primary
-        subscribedLabel.textColor = Styles.Colors.Text.tetriary
-        menuButton.setImage(UIImage(named: Assets.menu), for: .normal)
-      case .dark:
-        publisherTitle.textColor = Styles.Colors.Text.primaryInverted
-        subscribedLabel.textColor = Styles.Colors.Text.tetriaryInverted
-        menuButton.setImage(UIImage(named: Assets.menuDark), for: .normal)
-      }
+    case .light:
+      publisherTitle.textColor = Styles.Colors.Text.primary
+      subscribedLabel.textColor = Styles.Colors.Text.tetriary
+      menuButton.setImage(UIImage(named: Assets.menu), for: .normal)
+    case .dark:
+      publisherTitle.textColor = Styles.Colors.Text.primaryInverted
+      subscribedLabel.textColor = Styles.Colors.Text.tetriaryInverted
+      menuButton.setImage(UIImage(named: Assets.menuDark), for: .normal)
+    }
   }
 
   func configure(
     with model: CardHeaderModel,
     theme: Theme
-  ){
+  ) {
 
     setupTheme(theme: theme)
 
@@ -172,7 +178,7 @@ class CardHeader: UIView {
 
     publisherTitle.text = model.title
 
-    if (model.isSubscribed) {
+    if model.isSubscribed {
       subscribedLabel.text = "Вы подписаны"
       subscribedLabel.isHidden = false
     } else {

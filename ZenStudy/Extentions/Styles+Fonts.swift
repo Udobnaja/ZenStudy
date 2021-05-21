@@ -1,9 +1,5 @@
-//
-//  Styles+Font.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 13.05.2021.
-//
 
 import UIKit
 
@@ -22,7 +18,10 @@ public extension Styles {
     }
 
     private static func getFont(size: Size, typeface: Typeface) -> UIFont {
-      return UIFont(name: "YSText-\(typeface.rawValue)", size: size.rawValue) ?? UIFont.systemFont(ofSize: size.rawValue)
+      return UIFont(
+        name: "YSText-\(typeface.rawValue)",
+        size: size.rawValue
+      ) ?? UIFont.systemFont(ofSize: size.rawValue)
     }
   }
 }

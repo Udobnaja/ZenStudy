@@ -1,9 +1,5 @@
-//
-//  FeedItemFooterCell.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 18.05.2021.
-//
 
 import UIKit
 
@@ -21,7 +17,7 @@ class FeedItemFooterCell: UICollectionReusableView {
   }
 
   required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)!
+    fatalError("Init(coder:) has not been implemented")
   }
 
   private func makeLoaderView() -> UIActivityIndicatorView {
@@ -29,23 +25,24 @@ class FeedItemFooterCell: UICollectionReusableView {
 
     result.hidesWhenStopped = true
     result.style = UIActivityIndicatorView.Style.medium
-    result.layer.zPosition = -1;
+    result.layer.zPosition = -1
 
     return result
   }
 
   func configure(theme: Theme) {
-    loaderView.color = theme == Theme.light ? Styles.Colors.Text.primary : Styles.Colors.Text.primaryInverted
+    loaderView.color = theme == Theme.light ?
+      Styles.Colors.Text.primary :
+      Styles.Colors.Text.primaryInverted
   }
 
-  func  showLoader(){
+  func  showLoader() {
     isHidden = false
     loaderView.startAnimating()
   }
 
-  func  hideLoader(){
+  func  hideLoader() {
     isHidden = true
     loaderView.stopAnimating()
   }
 }
-

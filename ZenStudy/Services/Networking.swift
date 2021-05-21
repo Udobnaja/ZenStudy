@@ -1,21 +1,23 @@
-//
-//  Networking.swift
-//  ZenStudy
-//
-//  Created by Anna Udobnaja on 18.05.2021.
-//
+///
+// Created by Anna Udobnaja on 18.05.2021.
 
 import UIKit
 protocol Networking {
-  func fetch<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask
+  func fetch<T: Decodable>(
+    url: URL,
+    completion: @escaping (Result<T, Error>) -> Void
+  ) -> URLSessionDataTask
 }
 
 extension Networking {
-  func fetch<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
+  func fetch<T: Decodable>(
+    url: URL,
+    completion: @escaping (Result<T, Error>) -> Void
+  ) -> URLSessionDataTask {
     let urlRequest = URLRequest(url: url)
     let defaultSession = URLSession(configuration: .default)
 
-    return defaultSession.dataTask(with: urlRequest) { data, response, error in
+    return defaultSession.dataTask(with: urlRequest) { data, _, error in
       do {
         if let error = error {
           completion(.failure(error))

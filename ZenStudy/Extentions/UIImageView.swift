@@ -1,9 +1,6 @@
-//
-//  UIImageView.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 30.04.2021.
-//
+
 import UIKit
 
 extension UIImageView {

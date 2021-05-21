@@ -1,9 +1,5 @@
-//
-//  NSAttributeString+size.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 06.05.2021.
-//
 
 import CoreGraphics
 import CoreText

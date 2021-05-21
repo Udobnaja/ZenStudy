@@ -1,9 +1,5 @@
-//
-//  CardView.swift
-//  ZenStudy
-//
-//  Created by Anna Udobnaja on 30.04.2021.
-//
+///
+// Created by Anna Udobnaja on 30.04.2021.
 
 import UIKit
 
@@ -65,16 +61,16 @@ class CardView: UIView {
 
   private func setupTheme(theme: Theme) {
     switch theme {
-      case .light:
-        backgroundColor = Styles.Colors.Background.primary
-      case .dark:
-        backgroundColor = Styles.Colors.Background.primaryInverted
-      }
+    case .light:
+      backgroundColor = Styles.Colors.Background.primary
+    case .dark:
+      backgroundColor = Styles.Colors.Background.primaryInverted
+    }
   }
 
   func configure(
     with model: CellModel
-  ){
+  ) {
     setupTheme(theme: model.theme)
 
     if let cardHeaderModel = model.cardHeaderModel {
