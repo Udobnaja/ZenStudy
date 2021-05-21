@@ -2,6 +2,7 @@
 //  Created by Anna Udobnaja on 30.04.2021.
 
 import UIKit
+import ZenCore
 
 class CardFooter: UIView {
   private lazy var containertView = makeStackView()

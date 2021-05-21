@@ -2,6 +2,7 @@
 // Created by Anna Udobnaja on 29.04.2021.
 
 import UIKit
+import ZenCore
 
 private let zenType = "zen"
 private let itemType = "native"
@@ -139,6 +140,7 @@ class FeedController: UICollectionViewController {
       showError(message: "Not a valid URL")
       return
     }
+
     feedProvider.loadFeed(from: fetchingLink) { result in
       DispatchQueue.main.async {
         defer {

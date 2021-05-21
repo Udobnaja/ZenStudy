@@ -3,12 +3,17 @@ PODS:
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
   - SwiftLint (0.43.1)
+  - ZenCore (21.3.3.1211):
+    - SDWebImage (~> 5.11.0)
 
 DEPENDENCIES:
   - SDWebImage (~> 5.0)
   - SwiftLint
+  - ZenCore (~> 21.3.3.1211)
 
 SPEC REPOS:
+  https://bitbucket.browser.yandex-team.ru/scm/mssngr/messenger-library-ios.git:
+    - ZenCore
   trunk:
     - SDWebImage
     - SwiftLint
@@ -16,7 +21,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  ZenCore: 043c1861a4f508d550bacd22f55f484b31382b29
 
-PODFILE CHECKSUM: 2afc98e042b1b4effce1fdceb74d80339c92f5ec
+PODFILE CHECKSUM: 60bfc92b8c7e3abff98963b5a259826718d30137
 
 COCOAPODS: 1.10.1

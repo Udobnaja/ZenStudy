@@ -2,6 +2,7 @@
 //  Created by Anna Udobnaja on 29.04.2021.
 
 import UIKit
+import ZenCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,7 +21,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
 
-    let feedProvider = FeedProvider(network: Network())
+    let linkProvider = LinkProvider()
+    let factory = ZenNetworkFactory(
+      clid: "2314040",
+      country: "ru",
+      userAgent: AppInfo.userAgent,
+      supportedFeaturesProvider: FeaturesProvider(),
+      apiComponentsProvider: linkProvider,
+      bulkStatEventsLinkProvider: linkProvider,
+      authorizationHeadersProvider: AuthorizationHeadersAdapter(),
+      tusClient: nil,
+      debugNetworkParametersProvider: nil,
+      queryParametersProvider: QueryParametersProvider()
+    )
+    let (networkService, _) = factory.makeServices()
+
+    let feedProvider = FeedProvider(network: networkService)
     let navController = UINavigationController(
       rootViewController: FeedController(feedProvider: feedProvider)
     )
