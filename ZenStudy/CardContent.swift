@@ -1,6 +1,7 @@
 ///
 //  Created by Anna Udobnaja on 04.05.2021.
 
+import SDWebImage
 import UIKit
 
 class CardContent: UIView {
@@ -177,7 +178,7 @@ class CardContent: UIView {
 
     if let imageSrc = model.imageSrc {
         if let url = URL(string: imageSrc) {
-          thumbView.load(url: url)
+          thumbView.sd_setImage(with: url)
           thumbView.isHidden = false
           titleView.textContainer.maximumNumberOfLines =
             Layout.titleMaximumNumberOfLines

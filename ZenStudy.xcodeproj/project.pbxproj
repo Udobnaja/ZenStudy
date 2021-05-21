@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43DD6E0E15A12125ECDDBC43 /* libPods-ZenStudy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 373E1ED71E11AD1A73D2634A /* libPods-ZenStudy.a */; };
 		5E7A02EA263AEDC100DF7B53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A02E9263AEDC100DF7B53 /* AppDelegate.swift */; };
 		5E7A02EC263AEDC100DF7B53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A02EB263AEDC100DF7B53 /* SceneDelegate.swift */; };
 		5E7A02F3263AEDC300DF7B53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A02F2263AEDC300DF7B53 /* Assets.xcassets */; };
@@ -21,7 +20,6 @@
 		5E7A031F263C248800DF7B53 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A031E263C248800DF7B53 /* CardView.swift */; };
 		5E7A0323263C3A0000DF7B53 /* AutoLayout+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A0322263C3A0000DF7B53 /* AutoLayout+Helpers.swift */; };
 		5E7A0326263C404A00DF7B53 /* UICollectionView+Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A0325263C404A00DF7B53 /* UICollectionView+Cells.swift */; };
-		5E7A032F263C4D3500DF7B53 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A032E263C4D3500DF7B53 /* UIImageView.swift */; };
 		5E7A0332263C61E200DF7B53 /* Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A0331263C61E200DF7B53 /* Insets.swift */; };
 		5E7A0335263C63CC00DF7B53 /* CardFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A0334263C63CC00DF7B53 /* CardFooter.swift */; };
 		5E7A03392641562100DF7B53 /* CardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A03382641562000DF7B53 /* CardContent.swift */; };
@@ -55,10 +53,10 @@
 		5E7A06492653B41B00DF7B53 /* FeedProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A06482653B41A00DF7B53 /* FeedProviding.swift */; };
 		5E7A064C2653B89200DF7B53 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A064B2653B89200DF7B53 /* Networking.swift */; };
 		5E7A06562654191F00DF7B53 /* FeedItemFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A06552654191E00DF7B53 /* FeedItemFooterCell.swift */; };
+		B392D2889D87D976807EAF97 /* Pods_ZenStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DB486D245CC0F450129045 /* Pods_ZenStudy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		373E1ED71E11AD1A73D2634A /* libPods-ZenStudy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZenStudy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7A02E6263AEDC100DF7B53 /* ZenStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZenStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7A02E9263AEDC100DF7B53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E7A02EB263AEDC100DF7B53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 		5E7A031E263C248800DF7B53 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		5E7A0322263C3A0000DF7B53 /* AutoLayout+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AutoLayout+Helpers.swift"; sourceTree = "<group>"; };
 		5E7A0325263C404A00DF7B53 /* UICollectionView+Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Cells.swift"; sourceTree = "<group>"; };
-		5E7A032E263C4D3500DF7B53 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		5E7A0331263C61E200DF7B53 /* Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insets.swift; sourceTree = "<group>"; };
 		5E7A0334263C63CC00DF7B53 /* CardFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFooter.swift; sourceTree = "<group>"; };
 		5E7A03382641562000DF7B53 /* CardContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContent.swift; sourceTree = "<group>"; };
@@ -108,6 +105,7 @@
 		5E7A06482653B41A00DF7B53 /* FeedProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProviding.swift; sourceTree = "<group>"; };
 		5E7A064B2653B89200DF7B53 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		5E7A06552654191E00DF7B53 /* FeedItemFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemFooterCell.swift; sourceTree = "<group>"; };
+		79DB486D245CC0F450129045 /* Pods_ZenStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZenStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F1B696A2608190D6E252383 /* Pods-ZenStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenStudy.debug.xcconfig"; path = "Target Support Files/Pods-ZenStudy/Pods-ZenStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		D97C1F69B922032CE1A603B0 /* Pods-ZenStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenStudy.release.xcconfig"; path = "Target Support Files/Pods-ZenStudy/Pods-ZenStudy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43DD6E0E15A12125ECDDBC43 /* libPods-ZenStudy.a in Frameworks */,
+				B392D2889D87D976807EAF97 /* Pods_ZenStudy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +187,6 @@
 				5E7A031B263C01C600DF7B53 /* UIColor+hex.swift */,
 				5E7A0322263C3A0000DF7B53 /* AutoLayout+Helpers.swift */,
 				5E7A0325263C404A00DF7B53 /* UICollectionView+Cells.swift */,
-				5E7A032E263C4D3500DF7B53 /* UIImageView.swift */,
 				5E7A0331263C61E200DF7B53 /* Insets.swift */,
 				5E7A034E26440AAE00DF7B53 /* NSAttributeString+size.swift */,
 				5E7A0351264431D600DF7B53 /* ImageAspectRatio.swift */,
@@ -232,7 +229,7 @@
 		9BCFD4AF9775E6A52A4FE800 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				373E1ED71E11AD1A73D2634A /* libPods-ZenStudy.a */,
+				79DB486D245CC0F450129045 /* Pods_ZenStudy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -258,6 +255,7 @@
 				5E7A02E3263AEDC100DF7B53 /* Frameworks */,
 				5E7A02E4263AEDC100DF7B53 /* Resources */,
 				5E7A065E2657B74500DF7B53 /* ShellScript */,
+				0FA0934EF9CFCFCB73C6E2D2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -326,6 +324,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0FA0934EF9CFCFCB73C6E2D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZenStudy/Pods-ZenStudy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZenStudy/Pods-ZenStudy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZenStudy/Pods-ZenStudy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4E696786F840E9F1474DC5D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -385,7 +400,6 @@
 				5E7A03442642A2D800DF7B53 /* CardHeader.swift in Sources */,
 				5E7A03482642B22B00DF7B53 /* Source.swift in Sources */,
 				5E7A034F26440AAE00DF7B53 /* NSAttributeString+size.swift in Sources */,
-				5E7A032F263C4D3500DF7B53 /* UIImageView.swift in Sources */,
 				5E7A039B26495D1C00DF7B53 /* CellModel.swift in Sources */,
 				5E7A0335263C63CC00DF7B53 /* CardFooter.swift in Sources */,
 				5E7A0323263C3A0000DF7B53 /* AutoLayout+Helpers.swift in Sources */,

@@ -1,6 +1,7 @@
 ///
 // Created by Anna Udobnaja on 05.05.2021.
 
+import SDWebImage
 import UIKit
 
 class CardHeader: UIView {
@@ -126,7 +127,6 @@ class CardHeader: UIView {
 
     imageView.contentMode = .scaleAspectFill
     imageView.layer.cornerRadius = Layout.avatarSize / 2
-    imageView.image = UIImage(named: Assets.placeholderAvatar)
     imageView.clipsToBounds = true
 
     imageView.setDimensions(
@@ -172,7 +172,10 @@ class CardHeader: UIView {
 
     if let imageSrc = model.avatarSrc {
         if let url = URL(string: imageSrc) {
-          publisherAvatar.load(url: url)
+          publisherAvatar.sd_setImage(
+            with: url,
+            placeholderImage: UIImage(named: Assets.placeholderAvatar)
+          )
         }
     }
 
