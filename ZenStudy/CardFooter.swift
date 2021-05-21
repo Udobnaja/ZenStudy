@@ -172,6 +172,8 @@ class CardFooter: UIView {
   private func makeButton() -> UIButton {
     let button = UIButton.newAutoLayout()
 
+    button.setDimensions(to: CGSize(width: 32, height: 32))
+
     return button
   }
 
@@ -201,6 +203,7 @@ class CardFooter: UIView {
   private func makeCommentsCountLabel() -> UILabel {
     let label = UILabel.newAutoLayout()
     label.numberOfLines = 1
+    label.lineBreakMode = .byTruncatingTail
     label.font = Styles.Fonts.regular(size: .size14)
 
     return label

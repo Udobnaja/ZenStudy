@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct FeedItem: Codable {
-  let id: String
+struct FeedItem: Codable, Equatable {
+  let id: String?
   let title: String?
   let image: String?
-  let text: String
+  let text: String?
   let cardType: String?
   let itemType: String?
   let source: Source?

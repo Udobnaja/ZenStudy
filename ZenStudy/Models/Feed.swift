@@ -4,9 +4,13 @@
 //
 //  Created by Anna Udobnaja on 29.04.2021.
 //
+import UIKit
 
-import Foundation
-
-struct FeedItems: Codable {
+struct Feed: Codable {
   var items: [FeedItem]
+  var more: FeedLink
+}
+
+struct FeedLink: Codable {
+  var link: URL
 }

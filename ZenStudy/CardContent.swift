@@ -173,7 +173,6 @@ class CardContent: UIView {
     titleView.attributedText = titleAtributes
 
     if (hasSubtitle) {
-
       let subtitleAtributes = CardContent.createNSAttributedString(
         for: model.text,
         font: CardContent.Fonts.subtitle,
@@ -195,6 +194,7 @@ class CardContent: UIView {
       additionalInfoLabel.text = createDate
       additionalInfoLabel.isHidden = false
       textStackView.setCustomSpacing(.inset2, after: subtitleView)
+      additionalInfoLabel.setDimension(.height, to: CardContent.additionalInfoHeight(createDate: createDate, availableWidth: model.cellContentWidth))
     } else {
       additionalInfoLabel.isHidden = true
       textStackView.setCustomSpacing(0, after: subtitleView)
