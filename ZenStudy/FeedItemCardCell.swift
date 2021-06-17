@@ -1,9 +1,5 @@
-//
-//  FeedItemView.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 30.04.2021.
-//
 
 import UIKit
 
@@ -43,7 +39,7 @@ class FeedItemCardCell: UICollectionViewCell {
 
   func configure(
     with model: CellModel
-  ){
+  ) {
     cardView.configure(with: model)
   }
 }
@@ -57,7 +53,7 @@ extension FeedItemCardCell {
       header +
       CardContent.height(with: model.cardContentModel) +
       footer
-    
+
     return height
   }
 }

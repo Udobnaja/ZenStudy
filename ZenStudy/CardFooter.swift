@@ -1,17 +1,14 @@
-//
-//  CardFooter.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 30.04.2021.
-//
 
 import UIKit
+import ZenCore
 
 class CardFooter: UIView {
   private lazy var containertView = makeStackView()
   private lazy var controlsStackView = makeStackView()
   private lazy var commentsStackView = makeStackView()
-  
+
   private lazy var shareBtn = makeButton()
   private lazy var likeBtn = makeButton()
   private lazy var dislikeBtn = makeButton()
@@ -44,7 +41,12 @@ class CardFooter: UIView {
 
     containertView.pinEdgesToSuperview()
     containertView.isLayoutMarginsRelativeArrangement = true
-    containertView.layoutMargins = UIEdgeInsets(top: .inset8, left: .inset16, bottom: .inset12, right: .inset16)
+    containertView.layoutMargins = UIEdgeInsets(
+      top: .inset8,
+      left: .inset16,
+      bottom: .inset12,
+      right: .inset16
+    )
 
     containertView.addArrangedSubview(commentsStackView)
     containertView.addArrangedSubview(controlsStackView)
@@ -83,7 +85,10 @@ class CardFooter: UIView {
       for: .touchUpInside
     )
 
-    let handleCommentsTap = UITapGestureRecognizer(target: self, action: #selector(handleCommentsButtonTap))
+    let handleCommentsTap = UITapGestureRecognizer(
+      target: self,
+      action: #selector(handleCommentsButtonTap)
+    )
 
     commentsStackView.addGestureRecognizer(handleCommentsTap)
   }
@@ -123,36 +128,36 @@ class CardFooter: UIView {
     var likeImage = ""
     var dislikeImage = ""
     switch reaction {
-      case .like:
-        switch theme {
-          case .dark:
-            likeImage = Assets.likeDarkFilled
-            dislikeImage = Assets.dislikeDark
-          default:
-            likeImage = Assets.likeFilled
-            dislikeImage = Assets.dislike
-        }
+    case .like:
+    switch theme {
+    case .dark:
+      likeImage = Assets.likeDarkFilled
+      dislikeImage = Assets.dislikeDark
+    default:
+      likeImage = Assets.likeFilled
+      dislikeImage = Assets.dislike
+    }
 
-      case .dislike:
-        switch theme {
-          case .dark:
-            likeImage = Assets.likeDark
-            dislikeImage = Assets.dislikeDarkFilled
-          default:
-            likeImage = Assets.like
-            dislikeImage = Assets.dislikeFilled
-        }
+    case .dislike:
+    switch theme {
+    case .dark:
+      likeImage = Assets.likeDark
+      dislikeImage = Assets.dislikeDarkFilled
+    default:
+      likeImage = Assets.like
+      dislikeImage = Assets.dislikeFilled
+    }
 
-      case .empty:
-        switch theme {
-          case .dark:
-            likeImage = Assets.likeDark
-            dislikeImage = Assets.dislikeDark
-          default:
-            likeImage = Assets.like
-            dislikeImage = Assets.dislike
-        }
-      }
+    case .empty:
+    switch theme {
+    case .dark:
+      likeImage = Assets.likeDark
+      dislikeImage = Assets.dislikeDark
+    default:
+      likeImage = Assets.like
+      dislikeImage = Assets.dislike
+    }
+    }
 
     likeBtn.setImage(UIImage(named: likeImage), for: .normal)
     dislikeBtn.setImage(UIImage(named: dislikeImage), for: .normal)
@@ -210,14 +215,16 @@ class CardFooter: UIView {
   }
 
   private func makeCommentsLabelStub(theme: Theme) {
-    let color = theme == .light ? Styles.Colors.Text.secondary : Styles.Colors.Text.secondaryInverted
+    let color = theme == .light ?
+      Styles.Colors.Text.secondary :
+      Styles.Colors.Text.secondaryInverted
 
     let commentsAttributedString =
       NSAttributedString(
         string: "Комментариев",
         attributes: [
           .font: Styles.Fonts.regular(size: .size14),
-          .foregroundColor: color,
+          .foregroundColor: color
         ]
       )
     let numberAttributedString =
@@ -225,7 +232,7 @@ class CardFooter: UIView {
         string: "256 ",
         attributes: [
           .font: Styles.Fonts.bold(size: .size14),
-          .foregroundColor: color,
+          .foregroundColor: color
         ]
       )
     let resultString =
@@ -239,26 +246,28 @@ class CardFooter: UIView {
     self.theme = theme
 
     switch theme {
-      case .light:
-        commentsCountLabel.textColor = Styles.Colors.Text.secondary
-        bigAvatar.layer.borderColor = Styles.Colors.Background.primary.cgColor
-        smallAvatar.layer.borderColor = Styles.Colors.Background.primary.cgColor
-        shareBtn.setImage(UIImage(named: Assets.shareArrow), for: .normal)
-        likeBtn.setImage(UIImage(named: Assets.like), for: .normal)
-        dislikeBtn.setImage(UIImage(named: Assets.dislike), for: .normal)
-      case .dark:
-        commentsCountLabel.textColor = Styles.Colors.Text.secondaryInverted
-        bigAvatar.layer.borderColor = Styles.Colors.Background.primaryInverted.cgColor
-        smallAvatar.layer.borderColor = Styles.Colors.Background.primaryInverted.cgColor
-        shareBtn.setImage(UIImage(named: Assets.shareArrowDark), for: .normal)
-        likeBtn.setImage(UIImage(named: Assets.likeDark), for: .normal)
-        dislikeBtn.setImage(UIImage(named: Assets.dislikeDark), for: .normal)
-      }
+    case .light:
+      commentsCountLabel.textColor = Styles.Colors.Text.secondary
+      bigAvatar.layer.borderColor = Styles.Colors.Background.primary.cgColor
+      smallAvatar.layer.borderColor = Styles.Colors.Background.primary.cgColor
+      shareBtn.setImage(UIImage(named: Assets.shareArrow), for: .normal)
+      likeBtn.setImage(UIImage(named: Assets.like), for: .normal)
+      dislikeBtn.setImage(UIImage(named: Assets.dislike), for: .normal)
+    case .dark:
+      commentsCountLabel.textColor = Styles.Colors.Text.secondaryInverted
+      bigAvatar.layer.borderColor =
+        Styles.Colors.Background.primaryInverted.cgColor
+      smallAvatar.layer.borderColor =
+        Styles.Colors.Background.primaryInverted.cgColor
+      shareBtn.setImage(UIImage(named: Assets.shareArrowDark), for: .normal)
+      likeBtn.setImage(UIImage(named: Assets.likeDark), for: .normal)
+      dislikeBtn.setImage(UIImage(named: Assets.dislikeDark), for: .normal)
+    }
   }
 
   func configure(
     theme: Theme
-  ){
+  ) {
     setupTheme(theme: theme)
 
     makeCommentsLabelStub(theme: theme)
@@ -273,7 +282,6 @@ extension CardFooter {
     static let avatarBorderSize: CGFloat = 2
   }
 }
-
 
 extension CardFooter {
   static func height() -> CGFloat {

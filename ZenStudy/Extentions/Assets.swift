@@ -1,9 +1,5 @@
-//
-//  Assets.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 12.05.2021.
-//
 
 public enum Assets {
   static let like = "like"

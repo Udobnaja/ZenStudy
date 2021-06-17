@@ -1,9 +1,5 @@
-//
-//  SpacerView.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 04.05.2021.
-//
 
 import UIKit
 

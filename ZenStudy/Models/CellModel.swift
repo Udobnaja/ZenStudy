@@ -1,9 +1,5 @@
-//
-//  CellModel.swift
-//  ZenStudy
-//
-//  Created by Anna Udobnaja on 10.05.2021.
-//
+///
+// Created by Anna Udobnaja.
 
 import UIKit
 

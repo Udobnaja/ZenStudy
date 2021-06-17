@@ -1,9 +1,5 @@
-//
-//  FeedItem.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 29.04.2021.
-//
 
 import Foundation
 
@@ -31,15 +27,15 @@ struct FeedItem: Codable, Equatable {
       case source
   }
 
-  enum itemType {
-    case ImageText
-    case Text
+  enum ItemType {
+    case imageText
+    case text
 
     init(rawValue: FeedItem) {
-       switch rawValue.image {
-          case nil: self = .Text
-          default: self = .ImageText
-       }
+      switch rawValue.image {
+      case nil: self = .text
+      default: self = .imageText
+      }
     }
   }
 }

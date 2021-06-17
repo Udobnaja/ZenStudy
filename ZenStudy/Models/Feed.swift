@@ -1,9 +1,6 @@
-//
-//  FeedItems.swift
-//  ZenStudy
-//
+///
 //  Created by Anna Udobnaja on 29.04.2021.
-//
+
 import UIKit
 
 struct Feed: Codable {

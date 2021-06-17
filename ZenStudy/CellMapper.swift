@@ -1,9 +1,5 @@
-//
-//  Mapper.swift
-//  ZenStudy
-//
-//  Created by Anna Udobnaja on 10.05.2021.
-//
+///
+// Created by Anna Udobnaja on 10.05.2021.
 
 import UIKit
 
@@ -20,7 +16,7 @@ class CellMapper {
     var title = item.title ?? ""
     var subtitle = item.text ?? ""
 
-    if (title.isEmpty) {
+    if title.isEmpty {
       title = subtitle
       subtitle = ""
     }
@@ -40,11 +36,15 @@ class CellMapper {
     var cardHeaderModel: CardHeaderModel?
 
     if let source = item.source {
-      cardHeaderModel = CardHeaderModel(avatarSrc: source.logo, title: source.title, isSubscribed: source.status == "subscribed")
+      cardHeaderModel = CardHeaderModel(
+        avatarSrc: source.logo,
+        title: source.title,
+        isSubscribed: source.status == "subscribed"
+      )
     }
 
-    //print(FeedItem.itemType(rawValue: item))
-    
+    // print(FeedItem.itemType(rawValue: item))
+
     return CellModel(
       cardHeaderModel: cardHeaderModel,
       cardContentModel: CardContentModel(
